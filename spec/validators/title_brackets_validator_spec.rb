@@ -87,17 +87,17 @@ class Validatable
 end
 
 class TitleBracketsValidator < ActiveModel::Validator
-  def validate(title)
+  def validate(@title)
     brackets = {'[' => ']', '{' => '}','(' => ')'}
     result = []
-    title_ary = string.chars
+    title_ary = @title.chars
 
-    string_ary.each.with_index do |char, i|
-        if brackets.has_key?(char) && string_ary[i + 1] != brackets[char]
+    title_ary.each.with_index do |char, i|
+      if brackets.has_key?(char) && title_ary[i + 1] != brackets[char]
         result << char
-        elsif brackets.value?(char)
+      elsif brackets.value?(char)
         result << char
-        end
+      end
     end
     result.length.even?
   end

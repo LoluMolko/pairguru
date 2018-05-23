@@ -4,6 +4,12 @@
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
 
-%h3 Comments
-.jumbotron
-  = comment.commenter
+= form_for(@comment) do |f|
+  .form-group
+    = f.label :commenter
+    = f.text_field :commenter, class: 'form-control', placeholder: 'E-mail'
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: 'form-control', placeholder: 'Text'
+  %p
+    = f.submit class: "btn btn-default"
